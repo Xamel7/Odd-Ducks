@@ -96,7 +96,7 @@ function showResults() {
     let ul = document.querySelector('ul');
     for (let i = 0; i < items.productName.length; i++) {
         let li = document.createElement('li')
-        li.textContent = `${items.productName[i].image} had ${items.productName[i].views} view and was clicked ${items.productName[i].clicks} times.`;
+        li.textContent = `${items.productName[i].name} had ${items.productName[i].views} view and was clicked ${items.productName[i].clicks} times.`;
         ul.appendChild(li);
     }
 }
