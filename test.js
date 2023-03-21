@@ -16,10 +16,10 @@ let clicks = 0;
 let maxClicks = 25;
 
 // Creating the constructor function that creates an object listed with each product, and has the following properties:
-function Product(name, image, clicks) {
+function Product(name, image) {
     this.name = name;
     this.image = image;
-    this.clicks = clicks;
+    this.clicks = 0;
     this.views = 0;
     allProducts.push(this);
 }
@@ -74,8 +74,9 @@ function duckClick(e) {
         alert('Please click the image.');
     }
     clicks++;
-    let patDuck = e.target.image;
+    let patDuck = e.target.getAttribute('src');
     for (let i = 0; i < items.productName.length; i++) {
+        console.log(patDuck,items.productName[i].image)
         if (patDuck === items.productName[i].image) {
             items.productName[i].clicks++;
             break;
@@ -95,7 +96,7 @@ function showResults() {
     let ul = document.querySelector('ul');
     for (let i = 0; i < items.productName.length; i++) {
         let li = document.createElement('li')
-        li.textContent = `${items.productName[i].image} had ${items.productName[i].views} view and was clicked ${items.productName.clicks} times.`;
+        li.textContent = `${items.productName[i].image} had ${items.productName[i].views} view and was clicked ${items.productName[i].clicks} times.`;
         ul.appendChild(li);
     }
 }
