@@ -166,30 +166,30 @@ function displayResults(productsArray) {
     // chartTime
     // need the results from the html
     // the length of the productsArray
-    for (let i = 0; i < productsArray.length; i++) {
-        // setting a variable to represent every single item in the array
-        let product = productsArray[i];
-        // rendering the results on the screen
-        let resultMessage = `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} was shown ${product.views} times and clicked ${product.duckClick} times! You can find ${product.name.charAt(0).toUpperCase() + product.name.slice(1)} at: ${product.image}.`;
-        // create element to print the results on the page
-        let resultsP = document.createElement('p');
-        // adding new element to results container div in html
-        viewButton.append(resultsP);
-        // print message everyTime there's a new item 
-        resultsP.textContent = resultMessage;
-    }
+    // for (let i = 0; i < productsArray.length; i++) {
+    //     // setting a variable to represent every single item in the array
+    //     let product = productsArray[i];
+    //     // rendering the results on the screen
+    //     let resultMessage = `${product.name.charAt(0).toUpperCase() + product.name.slice(1)} was shown ${product.views} times and clicked ${product.duckClick} times! You can find ${product.name.charAt(0).toUpperCase() + product.name.slice(1)} at: ${product.image}.`;
+    //     // create element to print the results on the page
+    //     let resultsP = document.createElement('p');
+    //     // adding new element to results container div in html
+    //     viewButton.append(resultsP);
+    //     // print message everyTime there's a new item 
+    //     resultsP.textContent = resultMessage;
+    // }
     // I need to store my results in a local storage so i can access it if the page is refreshed
     // all data needed in my chart
     // creating a loop for the allProducts array
-    for (let i = 0; i < allProducts.length; i++) {
-        // local storage key set to Product: for name of product from allProducts array
-        // local storage value saved from duckClick: allProduct array object clicked times
-        localStorage.setItem(`Product: ${allProducts[i].name}`, `Duck Click: ${allProducts[i].duckClick}`)
-    }
-}
+    JSON.stringify(allProducts);
+    let x = JSON.stringify(allProducts);
+    console.log(x, allProducts)
+    localStorage.setItem('p', x);
 
+}
 // actively listening to events
 // listener for img-container, when any img is clicked, generates new pics from all items in renderImage()
+displayResults(items.productName);
 
 imgContainer.addEventListener('click', function(){
     for(let i = 0; i < renderImage.length; i++){
