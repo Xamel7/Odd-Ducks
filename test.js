@@ -5,7 +5,7 @@ let viewButton = document.getElementById('viewButton')
 let img1 = document.getElementById('img-one')
 let img2 = document.getElementById('img-two')
 let img3 = document.getElementById('img-three')
-function patDuck(){
+function patDuck() {
 
 }
 
@@ -88,7 +88,6 @@ function duckClick(e) {
     }
     if (clicks === maxClicks) {
         imgContainer.removeEventListener('click', duckClick);
-        viewButton.addEventListener('click', showResults);
         viewButton.className = 'clicks-permitted';
         imgContainer.className = 'no-voting';
     } else {
@@ -97,54 +96,24 @@ function duckClick(e) {
 }
 // Results for the loops
 function showResults() {
-    // console.log("Made it to showResults")
-    // let ul = document.querySelector('ul');
-    // for (let i = 0; i < items.productName.length; i++) {
-    //     let li = document.createElement('li')
-    //     li.textContent = `${items.productName[i].name} had ${items.productName[i].views} view and was clicked ${items.productName[i].clicks} times.`;
-    //     ul.appendChild(li);
-    // }
-    for (let i = 0; i < items.productName.length; i++) {
-
-    }
     var ctx = document.getElementById("chart");
-        const data = items.productName
-        // [
-        //     // {name: "$bag", clicks: 0},
-        //     // {name: "$banana", clicks: 0},
-        //     // {name: "$bathroom", clicks: 0},
-        //     // {name: "$boots", clicks: 0},
-        //     // {name: "$breakfast", clicks: 0},
-        //     // {name: "$bubblegum", clicks: 0},
-        //     // {name: "$chair", clicks: 0},
-        //     // {name: "$cthulhu", clicks: 0},
-        //     // {name: "$dog-duck", clicks: 0},
-        //     // {name: "$dragon", clicks: 0},
-        //     // {name: "$pen", clicks: 0},
-        //     // {name: "$pet-sweep", clicks: 0},
-        //     // {name: "$scissors", clicks: 0},
-        //     // {name: "$shark", clicks: 0},
-        //     // {name: "$sweep", clicks: 0},
-        //     // {name: "$tauntaun", clicks: 0},
-        //     // {name: "$unicorn", clicks: 0},
-        //     // {name: "$water-can", clicks: 0},
-        //     // {name: "$wine-glass", clicks: 0},
-        // ];
-            var chart = new Chart(ctx, {type: 'bar', 
-            data: {
-                labels: data.map(row => row.name),
-                datasets: [
-                    {
-                        label: 'Votes per product',
-                        data: data.map(row => row.clicks)
-                    },
-                    {
-                        label: 'Votes per Views',
-                        data: data.map(row => row.views)
-                    }
-                ]
-            }
-        });
+    const data = items.productName
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.map(row => row.name),
+            datasets: [
+                {
+                    label: 'Votes per product',
+                    data: data.map(row => row.clicks)
+                },
+                {
+                    label: 'Votes per Views',
+                    data: data.map(row => row.views)
+                }
+            ]
+        }
+    });
 }
 
 renderImage();
@@ -181,24 +150,21 @@ function displayResults(productsArray) {
     // I need to store my results in a local storage so i can access it if the page is refreshed
     // all data needed in my chart
     // creating a loop for the allProducts array
-    for (let i = 0; i < allProducts.length; i++) {
-        // local storage key set to Product: for name of product from allProducts array
-        // local storage value saved from duckClick: allProduct array object clicked times
-        localStorage.setItem(`Product: ${allProducts[i].name}`, `Duck Click: ${allProducts[i].duckClick}`)
-    }
 }
 
 // actively listening to events
 // listener for img-container, when any img is clicked, generates new pics from all items in renderImage()
 
-imgContainer.addEventListener('click', function(){
-    for(let i = 0; i < renderImage.length; i++){
+imgContainer.addEventListener('click', function () {
+    for (let i = 0; i < renderImage.length; i++) {
         getRandomNumber(renderImage[i]);
     };
     patDuck();
 });
-viewButton.addEventListener('click', function(){
+viewButton.addEventListener('click', function () {
     showResults();
+    let itemsString = JSON.stringify(items)
+    localStorage.setItem("items", itemsString)
 });
 
 
